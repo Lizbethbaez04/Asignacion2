@@ -68,15 +68,17 @@ void actualizar()
 
 	int estadoArriba = glfwGetKey(window, GLFW_KEY_UP);
 	if (estadoArriba == GLFW_PRESS)
-	{
-		posYTriangulo +=; 
+	{	//El 90 es la fase ej: tienes 50°, pero comportate como si tuvieras 40° mas
+		posXTriangulo += velocidadTriangulo * tiempoDiferencial * cos((angulo + 90.0) * 3.141592 / 180);
+		posYTriangulo += velocidadTriangulo * tiempoDiferencial * sin((angulo + 90.0) * 3.141592 / 180);
+
 	}
 
-	int estadoAbajo = glfwGetKey(window, GLFW_KEY_DOWN);
+	/*int estadoAbajo = glfwGetKey(window, GLFW_KEY_DOWN);
 	if (estadoAbajo == GLFW_PRESS)
 	{
 		posYTriangulo -= velocidadTriangulo * tiempoDiferencial;
-	}
+	}*/
 
 	tiempoAnterior = tiempoActual;
 	
@@ -87,9 +89,10 @@ void dibujar()
 	glPushMatrix();
 	glTranslatef(posXTriangulo, posYTriangulo, 0.0f);
 	glRotatef(angulo, 0.0f, 0.0f, 1.0f);
+	glScalef(0.4f, 0.7f, 0.7f);
 
 	glBegin(GL_TRIANGLES);
-	glColor3f(0.2, 0.6, 0.1);
+	glColor3f(1.0, 1.0, 1.0);
 
 	glVertex3f(0.0f, 0.15f, 0.0f);
 	glVertex3f(-0.15f, -0.15f, 0.0f);
@@ -145,7 +148,7 @@ int main()
 		glViewport(0, 0, 600, 600);
 		//Establecemos el color de borrado
 		//Valores RGBA
-		glClearColor(1, 0.7, 0.9, 1);
+		glClearColor(0.0, 0.0, 0.0, 1);
 		//Borrar
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//Actualizar valores y dibujar
