@@ -72,6 +72,23 @@ void actualizar()
 		posXTriangulo += velocidadTriangulo * tiempoDiferencial * cos((angulo + 90.0) * 3.141592 / 180);
 		posYTriangulo += velocidadTriangulo * tiempoDiferencial * sin((angulo + 90.0) * 3.141592 / 180);
 
+		if (posXTriangulo <= -1.08) 
+		{
+			posXTriangulo = 1.00;
+		}
+		else if (posXTriangulo >= 1.08) 
+		{
+			posXTriangulo = -1.00;
+		}
+
+		if (posYTriangulo <= -1.08)
+		{
+			posYTriangulo = 1.00;
+		}
+		else if (posYTriangulo >= 1.08)
+		{
+			posYTriangulo = -1.00;
+		}
 	}
 
 	/*int estadoAbajo = glfwGetKey(window, GLFW_KEY_DOWN);
